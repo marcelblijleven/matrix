@@ -1,3 +1,4 @@
+import random
 import sys
 import time
 
@@ -35,11 +36,8 @@ class Visualizer:
                 (self.matrix.width, self.matrix.height), ANTIALIAS
             )
 
-        # Convert image to RGB
-        image.convert('RGB')
-
-        # Set image
-        self.matrix.SetImage(image)
+        # Convert image to RGB and set image
+        self.matrix.SetImage(image.convert('RGB'))
 
         try:
             print("Press CTRL-C to stop.")
@@ -47,6 +45,21 @@ class Visualizer:
                 time.sleep(100)
         except KeyboardInterrupt:
             sys.exit(0)
+
+    def cycle(self):
+        """
+        Cycle through show image methods
+        :return:
+        """
+        choices = [
+            'show_random_complementary',
+            'show_random_gradient'
+        ]
+
+        choice = random.choice(choices)
+
+        # dispatch choice
+        getattr(self, choice)()
 
     def show_random_complementary(self):
         # Create simple image to reduce complexity when drawing pixels
