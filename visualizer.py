@@ -16,7 +16,7 @@ class Visualizer:
         self.grid_size = grid_size
         columns, rows = grid_size
 
-        options = RGBMatrixOptions
+        options = RGBMatrixOptions()
         options.rows = rows
         options.chain_length = 1
         options.parallel = 1
